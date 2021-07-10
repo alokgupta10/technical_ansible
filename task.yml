@@ -1,0 +1,10 @@
+--- #
+- hosts: demo
+  user: ansible
+  become: yes
+  connections: ssh
+  gather_facts: yes
+
+  task:
+          name: Install HTTPD Package
+          action: yum name=httpd state=present

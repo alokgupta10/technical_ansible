@@ -1,0 +1,18 @@
+---
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  vars:
+          pkgname: httpd
+
+  tasks:
+          - name: Install HTTPD Packages on Centos
+            action: yum name="{{pkgname}}" state=present
+            notify: restart httpd
+
+  handlers:
+          - name: restart httpd
+            action: service name="{{pkgname}}" state=restarted

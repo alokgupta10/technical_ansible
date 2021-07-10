@@ -1,0 +1,13 @@
+---
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+          - name: Install Apache Package on Debian Node
+            command: apt-get install apache2 -y
+            when: ansible_os_family == "Debian"
+          - name: Install HTTPD Package on RedHat Node
+            command: yum install httpd -y
+            when: ansible_os_family == "RedHat"
